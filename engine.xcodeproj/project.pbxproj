@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E17ADD6F1E4C424200FB9D58 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1F7E8E31E4C3C2C0001DD5F /* Object.cpp */; };
+		E17ADD701E4C424800FB9D58 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1F7E8E61E4C3C2C0001DD5F /* SceneManager.cpp */; };
+		E17ADD751E4C4C5D00FB9D58 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E17ADD731E4C4C5D00FB9D58 /* Vector3.cpp */; settings = {ASSET_TAGS = (); }; };
 		E1F7E8DA1E4C3BB80001DD5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1F7E8D91E4C3BB80001DD5F /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +26,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E17ADD731E4C4C5D00FB9D58 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3.cpp; sourceTree = "<group>"; };
+		E17ADD741E4C4C5D00FB9D58 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
 		E1F7E8D61E4C3BB80001DD5F /* engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F7E8D91E4C3BB80001DD5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E1F7E8E21E4C3C2C0001DD5F /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
+		E1F7E8E31E4C3C2C0001DD5F /* Object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Object.cpp; sourceTree = "<group>"; };
+		E1F7E8E41E4C3C2C0001DD5F /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
+		E1F7E8E61E4C3C2C0001DD5F /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
+		E1F7E8E71E4C3C2C0001DD5F /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,10 +48,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E17ADD721E4C4C5D00FB9D58 /* math */ = {
+			isa = PBXGroup;
+			children = (
+				E17ADD731E4C4C5D00FB9D58 /* Vector3.cpp */,
+				E17ADD741E4C4C5D00FB9D58 /* Vector3.h */,
+			);
+			name = math;
+			path = engine/math;
+			sourceTree = "<group>";
+		};
 		E1F7E8CD1E4C3BB80001DD5F = {
 			isa = PBXGroup;
 			children = (
 				E1F7E8D81E4C3BB80001DD5F /* engine */,
+				E1F7E8E11E4C3C2C0001DD5F /* core */,
+				E17ADD721E4C4C5D00FB9D58 /* math */,
 				E1F7E8D71E4C3BB80001DD5F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +82,19 @@
 				E1F7E8D91E4C3BB80001DD5F /* main.cpp */,
 			);
 			path = engine;
+			sourceTree = "<group>";
+		};
+		E1F7E8E11E4C3C2C0001DD5F /* core */ = {
+			isa = PBXGroup;
+			children = (
+				E1F7E8E21E4C3C2C0001DD5F /* Component.h */,
+				E1F7E8E31E4C3C2C0001DD5F /* Object.cpp */,
+				E1F7E8E41E4C3C2C0001DD5F /* Object.h */,
+				E1F7E8E61E4C3C2C0001DD5F /* SceneManager.cpp */,
+				E1F7E8E71E4C3C2C0001DD5F /* SceneManager.h */,
+			);
+			name = core;
+			path = engine/core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +153,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E17ADD701E4C424800FB9D58 /* SceneManager.cpp in Sources */,
+				E17ADD6F1E4C424200FB9D58 /* Object.cpp in Sources */,
+				E17ADD751E4C4C5D00FB9D58 /* Vector3.cpp in Sources */,
 				E1F7E8DA1E4C3BB80001DD5F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,14 +243,20 @@
 		E1F7E8DE1E4C3BB80001DD5F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Debug;
 		};
 		E1F7E8DF1E4C3BB80001DD5F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Release;
 		};
@@ -235,6 +279,7 @@
 				E1F7E8DF1E4C3BB80001DD5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
