@@ -20,9 +20,12 @@ int main()
     
     sceneMgr.FindObjectByID(firstObj.GetID());
     
-    try {
+    try
+    {
         sceneMgr.FindObjectByID(-1);
-    } catch (const char* msg) {
+    }
+    catch (const char* msg)
+    {
         std::cerr << msg << std::endl;
     }
     

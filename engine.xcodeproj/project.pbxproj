@@ -10,6 +10,9 @@
 		E17ADD6F1E4C424200FB9D58 /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1F7E8E31E4C3C2C0001DD5F /* Object.cpp */; };
 		E17ADD701E4C424800FB9D58 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1F7E8E61E4C3C2C0001DD5F /* SceneManager.cpp */; };
 		E17ADD751E4C4C5D00FB9D58 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E17ADD731E4C4C5D00FB9D58 /* Vector3.cpp */; settings = {ASSET_TAGS = (); }; };
+		E17ADD781E4D786F00FB9D58 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E17ADD761E4D786F00FB9D58 /* Quaternion.cpp */; settings = {ASSET_TAGS = (); }; };
+		E17ADD7B1E4D7DFB00FB9D58 /* Trig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E17ADD791E4D7DFB00FB9D58 /* Trig.cpp */; settings = {ASSET_TAGS = (); }; };
+		E17ADD7E1E4D920800FB9D58 /* Matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E17ADD7C1E4D920800FB9D58 /* Matrix3.cpp */; settings = {ASSET_TAGS = (); }; };
 		E1F7E8DA1E4C3BB80001DD5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1F7E8D91E4C3BB80001DD5F /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +31,12 @@
 /* Begin PBXFileReference section */
 		E17ADD731E4C4C5D00FB9D58 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3.cpp; sourceTree = "<group>"; };
 		E17ADD741E4C4C5D00FB9D58 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
+		E17ADD761E4D786F00FB9D58 /* Quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quaternion.cpp; sourceTree = "<group>"; };
+		E17ADD771E4D786F00FB9D58 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		E17ADD791E4D7DFB00FB9D58 /* Trig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trig.cpp; sourceTree = "<group>"; };
+		E17ADD7A1E4D7DFB00FB9D58 /* Trig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
+		E17ADD7C1E4D920800FB9D58 /* Matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix3.cpp; sourceTree = "<group>"; };
+		E17ADD7D1E4D920800FB9D58 /* Matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix3.h; sourceTree = "<group>"; };
 		E1F7E8D61E4C3BB80001DD5F /* engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F7E8D91E4C3BB80001DD5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E1F7E8E21E4C3C2C0001DD5F /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
@@ -53,6 +62,12 @@
 			children = (
 				E17ADD731E4C4C5D00FB9D58 /* Vector3.cpp */,
 				E17ADD741E4C4C5D00FB9D58 /* Vector3.h */,
+				E17ADD761E4D786F00FB9D58 /* Quaternion.cpp */,
+				E17ADD771E4D786F00FB9D58 /* Quaternion.h */,
+				E17ADD791E4D7DFB00FB9D58 /* Trig.cpp */,
+				E17ADD7A1E4D7DFB00FB9D58 /* Trig.h */,
+				E17ADD7C1E4D920800FB9D58 /* Matrix3.cpp */,
+				E17ADD7D1E4D920800FB9D58 /* Matrix3.h */,
 			);
 			name = math;
 			path = engine/math;
@@ -156,6 +171,9 @@
 				E17ADD701E4C424800FB9D58 /* SceneManager.cpp in Sources */,
 				E17ADD6F1E4C424200FB9D58 /* Object.cpp in Sources */,
 				E17ADD751E4C4C5D00FB9D58 /* Vector3.cpp in Sources */,
+				E17ADD7E1E4D920800FB9D58 /* Matrix3.cpp in Sources */,
+				E17ADD7B1E4D7DFB00FB9D58 /* Trig.cpp in Sources */,
+				E17ADD781E4D786F00FB9D58 /* Quaternion.cpp in Sources */,
 				E1F7E8DA1E4C3BB80001DD5F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

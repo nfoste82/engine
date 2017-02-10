@@ -14,26 +14,23 @@ const Vector3 Vector3::UnitY(0.f, 1.f, 0.f);
 const Vector3 Vector3::UnitZ(0.f, 0.f, 1.f);
 const Vector3 Vector3::Zero(0.0f, 0.0f, 0.0f);
 
-Vector3::Vector3(void) : x(0.0f), y(0.0f), z(0.0f)
+Vector3::Vector3() :
+    x(0.0f), y(0.0f), z(0.0f)
 {
 }
 
-Vector3::Vector3(const float x, const float y, const float z)
+Vector3::Vector3(const float _x, const float _y, const float _z) :
+    x(_x), y(_y), z(_z)
 {
-    this->x = x;
-    this->y = y;
-    this->z = z;
 }
 
 // Copy constructor
-Vector3::Vector3(const Vector3& rhs)
+Vector3::Vector3(const Vector3& rhs) :
+    x(rhs.x), y(rhs.y), z(rhs.z)
 {
-    x = rhs.x;
-    y = rhs.y;
-    z = rhs.z;
 }
 
-Vector3::~Vector3(void)
+Vector3::~Vector3()
 {
 }
 
@@ -54,9 +51,9 @@ Vector3 Vector3::operator-(const Vector3& rhs) const
     return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
 }
 
-Vector3 Vector3::operator-(void) const
+Vector3 Vector3::operator-() const
 {
-    return Vector3(-x, -y, -z);;
+    return Vector3(-x, -y, -z);
 }
 
 void Vector3::operator-=(const Vector3& rhs)
@@ -118,7 +115,7 @@ Vector3 Vector3::Cross(const Vector3& rhs) const
                     (x * rhs.y) - (y * rhs.x) );
 }
 
-float Vector3::Unitize(void)
+float Vector3::Unitize()
 {
     const float length = Length();
     const float inverseLength = 1.0f / length;
@@ -128,7 +125,7 @@ float Vector3::Unitize(void)
     return length;
 }
 
-void Vector3::Reflect( const Vector3& normal )
+void Vector3::Reflect(const Vector3& normal)
 {
     const float dotProductTimesTwo = Dot(normal) * 2.0f;
     x -= dotProductTimesTwo * normal.x;
