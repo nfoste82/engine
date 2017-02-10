@@ -2,5 +2,5 @@
 
 float Matrix3::GetTrace() const
 {
-    return m00 + m11 + m22;
+    return m_values[0][0] + m_values[1][1] + m_values[2][2];
 }
