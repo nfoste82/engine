@@ -61,7 +61,7 @@ public:
     static const Vector3 UnitZ;
     
     static const Vector3 Zero;
-    
+    static const Vector3 One;
     
     float x;
     float y;

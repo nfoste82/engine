@@ -1,14 +1,12 @@
 #include <iostream>
+#include "Matrix3.h"
+#include "Quaternion.h"
 #include "Vector3.h"
 #include "SceneManager.h"
 #include "Object.h"
 
-int main()
+void TestSceneManager()
 {
-    Vector3 customVec(1.f, 2.f, 3.f);
-
-    std::cout << customVec << std::endl;
-    
     SceneManager sceneMgr;
     const Object& firstObj = sceneMgr.CreateObject();
     
@@ -28,6 +26,35 @@ int main()
     {
         std::cerr << msg << std::endl;
     }
+}
+
+void TestMath()
+{
+    Vector3 forward = Vector3::Forward;
+    
+    std::cout << "Forward vector: " << forward << std::endl;
+    
+    Matrix3 identityMatrix = Matrix3::Identity;
+    
+    std::cout << "Identity matrix: " << identityMatrix << std::endl;
+    
+    Vector3 fwdFromIdentityMat = identityMatrix.GetRollAxis();
+    
+    std::cout << "Forward vector for identity matrix: " << forward << std::endl;
+    
+    Quaternion quatFromMat = Quaternion::Identity;
+    quatFromMat.FromRotationMatrix(identityMatrix);
+    
+    std::cout << "Quaternion from identity matrix: " << quatFromMat << std::endl;
+}
+
+int main()
+{
+    TestSceneManager();
+    
+    std::cout << std::endl;
+    
+    TestMath();
     
     std::cout << std::endl;
     return 0;

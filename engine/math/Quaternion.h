@@ -6,6 +6,7 @@ class Vector3;
 
 class Quaternion
 {
+public:
     Quaternion(float _w, float _x, float _y, float _z);
     
     Quaternion(float angleRadians, const Vector3& axis);
@@ -24,6 +25,8 @@ class Quaternion
     Quaternion operator-() const;
     
     void operator*=(const float scalar);
+    
+    friend std::ostream& operator<<(std::ostream& ofs,const Quaternion& rhs);
     
     float GetValue(int index) const;
     void SetValue(int index, float value);

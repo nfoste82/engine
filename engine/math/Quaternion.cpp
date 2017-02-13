@@ -14,6 +14,7 @@
 //===============================================================================
 
 #include <math.h>
+#include <sstream>
 #include "Matrix3.h"
 #include "Trig.h"
 #include "Vector3.h"
@@ -180,6 +181,18 @@ void Quaternion::operator*=(const float scalar)
     x *= scalar;
     y *= scalar;
     z *= scalar;
+}
+
+std::ostream& operator<<(std::ostream& ofs, const Quaternion& rhs)
+{
+    std::stringstream stream;
+    stream << "W: " << rhs.w << ", X: " << rhs.x << ", Y: " << rhs.y << ", Z: " << rhs.z;
+    
+    ofs.write(const_cast<char*>(stream.str().c_str()),
+              static_cast<std::streamsize>(stream.str().size() *
+                                           sizeof(char)) );
+    
+    return ofs;
 }
 
 float Quaternion::GetValue(int index) const
