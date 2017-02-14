@@ -37,6 +37,7 @@
 		E17ADD7A1E4D7DFB00FB9D58 /* Trig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
 		E17ADD7C1E4D920800FB9D58 /* Matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix3.cpp; sourceTree = "<group>"; };
 		E17ADD7D1E4D920800FB9D58 /* Matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix3.h; sourceTree = "<group>"; };
+		E17ADD7F1E52D79A00FB9D58 /* Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
 		E1F7E8D61E4C3BB80001DD5F /* engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F7E8D91E4C3BB80001DD5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E1F7E8E21E4C3C2C0001DD5F /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 				E17ADD7A1E4D7DFB00FB9D58 /* Trig.h */,
 				E17ADD7C1E4D920800FB9D58 /* Matrix3.cpp */,
 				E17ADD7D1E4D920800FB9D58 /* Matrix3.h */,
+				E17ADD7F1E52D79A00FB9D58 /* Math.h */,
 			);
 			name = math;
 			path = engine/math;

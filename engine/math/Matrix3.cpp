@@ -28,17 +28,17 @@ Vector3 Matrix3::GetRow(int rowIndex) const
 
 Vector3 Matrix3::GetPitchAxis() const
 {
-    return Vector3(m_values[0][0], m_values[0][1], m_values[0][2]);
+    return GetRow(0);
 }
 
 Vector3 Matrix3::GetYawAxis() const
 {
-    return Vector3(m_values[1][0], m_values[1][1], m_values[1][2]);
+    return GetRow(1);
 }
 
 Vector3 Matrix3::GetRollAxis() const
 {
-    return Vector3(m_values[2][0], m_values[2][1], m_values[2][2]);
+    return GetRow(2);
 }
 
 float Matrix3::GetTrace() const
