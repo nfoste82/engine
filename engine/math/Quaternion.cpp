@@ -30,7 +30,7 @@ Quaternion::Quaternion(float radians, const Vector3& axis)
     FromAngleAxis(radians, axis);
 }
 
-void Quaternion::Unitize()
+const Quaternion& Quaternion::Unitize()
 {
     float length = w * w + x * x + y * y + z * z;
     
@@ -41,6 +41,8 @@ void Quaternion::Unitize()
     x *= inverseLength;
     y *= inverseLength;
     z *= inverseLength;
+    
+    return *this;
 }
 
 Quaternion Quaternion::GetUnitized() const
@@ -152,6 +154,42 @@ void Quaternion::FromRotationMatrix(const Matrix3& mat)
     }
 }
 
+float Quaternion::Dot(const Quaternion& q) const
+{
+    return w * q.w + x * q.x + y * q.y + z * q.z;
+}
+
+Quaternion Quaternion::Lerp(const Quaternion& q1, const Quaternion& q2, float t)
+{
+    return (q1 * (1 - t) + q2 * t).Unitize();
+}
+
+Quaternion Quaternion::Slerp(const Quaternion& q1, const Quaternion& q2, float t)
+{
+    Quaternion q3 = Quaternion::Identity;
+    float dot = q1.Dot(q2);
+    
+    // The angle between the rotations is tiny, so we'll just lerp.
+    if (dot > 0.995f)
+    {
+        return Lerp(q1, q3, t);
+    }
+    
+    // Dot is cos(theta), when dot is less than 0 then the rotations are
+    // more than 90 degrees apart from one another. We need to invert
+    // one of the quaternions so we don't end up rotating more than 180 degrees.
+    if (dot < 0.f)
+    {
+        float angle = acosf(-dot);
+        return (q1 * sinf(angle * (1 - t)) + -q2 * sinf(angle * t)) / sinf(angle);
+    }
+    else
+    {
+        float angle = acosf(dot);
+        return (q1 * sinf(angle * (1 - t)) + q2 * sinf(angle * t)) / sinf(angle);
+    }
+}
+
 Quaternion Quaternion::operator+(const Quaternion& q) const
 {
     return Quaternion(w + q.w, x + q.x, y + q.y, z + q.z);
@@ -168,6 +206,17 @@ Quaternion Quaternion::operator*(const Quaternion& q) const
                       w * q.x + x * q.w + y * q.z - z * q.y,
                       w * q.y + y * q.w + z * q.x - x * q.z,
                       w * q.z + z * q.w + x * q.y - y * q.x);
+}
+
+Quaternion Quaternion::operator*(float scalar) const
+{
+    return Quaternion(w * scalar, x * scalar, y * scalar, z * scalar);
+}
+
+Quaternion Quaternion::operator/(float scalar) const
+{
+    float inverse = 1 / scalar;
+    return Quaternion(w * inverse, x * inverse, y * inverse, z * inverse);
 }
 
 Quaternion Quaternion::operator-() const

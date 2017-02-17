@@ -71,6 +71,10 @@ void TestMath()
     
     std::cout << "Quaternion from FromAngleAxis: " << quatFromMat << std::endl;
     
+    std::cout << "Same quaternion rotated back 35% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.35f) << std::endl;
+    std::cout << "Same quaternion rotated back 70% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.70f) << std::endl;
+    std::cout << "Same quaternion rotated back 90% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.9f) << std::endl;
+    
     std::cout << std::endl;
     
     // Let's try it again, but we'll pitch -90 degrees so the matrix's forward

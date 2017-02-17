@@ -8,7 +8,7 @@ class Vector3;
 class Matrix3
 {
 public:
-    Matrix3() {};
+    Matrix3() {}
     Matrix3(const Vector3& row0, const Vector3& row1, const Vector3& row2);
     
     void SetRow(int rowIndex, const Vector3& row);
