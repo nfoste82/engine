@@ -92,6 +92,19 @@ void TestMath()
     quatFromMat.FromAngleAxis(-Math::HalfPi, Vector3::Right);
     
     std::cout << "Quaternion from FromAngleAxis: " << quatFromMat << std::endl;
+    
+    std::cout << "Rotated matrix's transpose: " << rotatedMatrix.Transpose() << std::endl;
+    
+    Matrix3 rotatedInverse;
+    if (!rotatedMatrix.Inverse(rotatedInverse))
+    {
+        throw "Failed to invert matrix";
+    }
+    
+    std::cout << "Rotated matrix's inverse: " << rotatedInverse << std::endl;
+    
+    // Multiplying an inverse by the original should give a near-identity matrix
+    std::cout << "Rotated * inverse (should equal identity): " << rotatedMatrix * rotatedInverse << std::endl;
 }
 
 int main()

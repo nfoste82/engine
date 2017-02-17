@@ -8,10 +8,13 @@ class Vector3;
 class Matrix3
 {
 public:
+    Matrix3() {};
     Matrix3(const Vector3& row0, const Vector3& row1, const Vector3& row2);
     
     void SetRow(int rowIndex, const Vector3& row);
     Vector3 GetRow(int rowIndex) const;
+    
+    Vector3 GetColumn(int columnIndex) const;
     
     Vector3 GetPitchAxis() const;
     Vector3 GetYawAxis() const;
@@ -19,16 +22,21 @@ public:
     
     inline float GetValue(int x, int y) const { return m_values[x][y]; }
     
+    inline void SetValue(int x, int y, float value) { m_values[x][y] = value; }
+    
     float GetTrace() const;
+    
+    Matrix3 Transpose() const;
+    
+    bool Inverse(Matrix3& invMat) const;
 
     static const Matrix3 Identity;
     
+    Matrix3 operator*(const Matrix3& mat) const;
+    
     friend std::ostream& operator<<(std::ostream& ofs, const Matrix3& rhs);
     
-public:
-    // These are public for pure performance reasons. But allowing
-    // public access to these could easily cause problems.
-    // Consider inline accessors to read these.
+private:
     float m_values[3][3];
 };
 
