@@ -18,6 +18,8 @@ public:
     void FromAngleAxis(float angle, const Vector3& axis);
     void ToAngleAxis(float& angle, Vector3& axis);
     
+    static Quaternion FromEulerAngles(float x, float y, float z);
+    
     void FromRotationMatrix(const Matrix3& rot);
     
     float Dot(const Quaternion& q) const;

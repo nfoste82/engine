@@ -103,6 +103,35 @@ void Quaternion::ToAngleAxis(float& radians, Vector3& axis)
     }
 }
 
+Quaternion Quaternion::FromEulerAngles(float x, float y, float z)
+{
+    // Code in this method was referenced and adapted
+    // from code written by Will Perone, located here:
+    // https://github.com/MegaManSE/willperone/blob/master/Math/quaternion.h
+    
+    float halfx = 0.5f * x;
+    float halfy = 0.5f * y;
+    float halfz = 0.5f * z;
+    
+    float cos_x_2 = cosf(halfx);
+    float cos_y_2 = cosf(halfy);
+    float cos_z_2 = cosf(halfz);
+    
+    float sin_x_2 = sinf(halfx);
+    float sin_y_2 = sinf(halfy);
+    float sin_z_2 = sinf(halfz);
+    
+    float czcy2 = cos_z_2 * cos_y_2;
+    float szsy2 = sin_z_2 * sin_y_2;
+    
+    Quaternion q;
+    q.w = (czcy2 * cos_x_2) + (szsy2 * sin_x_2);
+    q.x = (czcy2 * sin_x_2) - (szsy2 * cos_x_2);
+    q.y = (cos_z_2 * sin_y_2 * cos_x_2) + (sin_z_2 * cos_y_2 * sin_x_2);
+    q.z = (sin_z_2 * cos_y_2 * cos_x_2) - (cos_z_2 * sin_y_2 * sin_x_2);
+    return q;
+}
+
 void Quaternion::FromRotationMatrix(const Matrix3& mat)
 {
     float trace = mat.GetTrace();

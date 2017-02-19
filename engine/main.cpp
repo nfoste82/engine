@@ -56,7 +56,12 @@ void TestMath()
                           Vector3::Up,
                           Vector3(1.f, 0.f, 0.f));
     
-    std::cout << "Rotated matrix: " << rotatedMatrix << std::endl;
+    std::cout << "Rotated matrix (created manually): " << rotatedMatrix << std::endl;
+    
+    // Let's create the same matrix using FromEulerAngles now.
+    rotatedMatrix = Matrix3::FromEulerAngles(0.f, Math::HalfPi, 0.f);
+    
+    std::cout << "Rotated matrix (from euler angles): " << rotatedMatrix << std::endl;
     
     std::cout << "Rotated matrix's forward: " << rotatedMatrix.GetRollAxis() << std::endl;
     
@@ -70,6 +75,8 @@ void TestMath()
     quatFromMat.FromAngleAxis(Math::HalfPi, Vector3::Up);
     
     std::cout << "Quaternion from FromAngleAxis: " << quatFromMat << std::endl;
+    
+    std::cout << "Quaternion from euler angles: " << Quaternion::FromEulerAngles(0.f, Math::HalfPi, 0.f) << std::endl;
     
     std::cout << "Same quaternion rotated back 35% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.35f) << std::endl;
     std::cout << "Same quaternion rotated back 70% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.70f) << std::endl;
@@ -108,7 +115,7 @@ void TestMath()
     std::cout << "Rotated matrix's inverse: " << rotatedInverse << std::endl;
     
     // Multiplying an inverse by the original should give a near-identity matrix
-    std::cout << "Rotated * inverse (should equal identity): " << rotatedMatrix * rotatedInverse << std::endl;
+    std::cout << "Rotated * inverse (should equal identity) : " << rotatedMatrix * rotatedInverse << std::endl;
 }
 
 int main()

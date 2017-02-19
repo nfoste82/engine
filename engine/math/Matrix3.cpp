@@ -21,6 +21,36 @@ void Matrix3::SetRow(int rowIndex, const Vector3& row)
     m_values[2][rowIndex] = row.z;
 }
 
+Matrix3 Matrix3::FromEulerAngles(float x, float y, float z)
+{
+    // Code in this method was referenced and adapted
+    // from code written by Will Perone, located here:
+    // https://github.com/MegaManSE/willperone/blob/master/Math/Matrix3.h
+    
+    float cx = cosf(x);
+    float sx = sinf(x);
+    float cy = cosf(y);
+    float sy = sinf(y);
+    float cz = cosf(z);
+    float sz = sinf(z);
+    float sxsy = sx * sy;
+    float cxsy = cx * sy;
+    
+    Matrix3 mat;
+    mat.SetValue(0, 0, cy * cz);
+    mat.SetValue(1, 0, cy * sz);
+    mat.SetValue(2, 0, -sy);
+    
+    mat.SetValue(0, 1, (sxsy * cz) - (cx * sz));
+    mat.SetValue(1, 1, (sxsy * sz) + (cx * cz));
+    mat.SetValue(2, 1, sx * cy);
+    
+    mat.SetValue(0, 2, (cxsy * cz) + (sx * sz));
+    mat.SetValue(1, 2, (cxsy * sz) - (sx * cz));
+    mat.SetValue(2, 2, cx * cy);
+    return mat;
+}
+
 Vector3 Matrix3::GetRow(int rowIndex) const
 {
     return Vector3(m_values[0][rowIndex], m_values[1][rowIndex], m_values[2][rowIndex]);
