@@ -3,6 +3,7 @@
 
 #include <ostream>
 
+class Quaternion;
 class Vector3;
 
 class Matrix3
@@ -12,6 +13,7 @@ public:
     Matrix3(const Vector3& row0, const Vector3& row1, const Vector3& row2);
     
     static Matrix3 FromEulerAngles(float x, float y, float z);
+    static Matrix3 FromQuaternion(const Quaternion& quat);
     
     void SetRow(int rowIndex, const Vector3& row);
     Vector3 GetRow(int rowIndex) const;

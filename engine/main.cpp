@@ -5,6 +5,7 @@
 #include "Vector3.h"
 #include "SceneManager.h"
 #include "Object.h"
+#include "PerfTimer.h"
 
 void TestSceneManager()
 {
@@ -31,6 +32,10 @@ void TestSceneManager()
 
 void TestMath()
 {
+    // Creates a timer to time the cost of this entire function.
+    // After the function goes out of scope the elapsed time is output to console.
+    CreateFcnTimer;
+    
     Vector3 forward = Vector3::Forward;
     
     std::cout << "Forward vector: " << forward << std::endl;
@@ -72,15 +77,48 @@ void TestMath()
     // Now we'll use Quaternion.FromAngleAxis to make the same quaternion.
     // This should rotate 90 degrees around the world Y axis just like we did
     // manually before.
-    quatFromMat.FromAngleAxis(Math::HalfPi, Vector3::Up);
+    quatFromMat.FromAxisAngle(Vector3::Up, Math::HalfPi);
     
     std::cout << "Quaternion from FromAngleAxis: " << quatFromMat << std::endl;
     
     std::cout << "Quaternion from euler angles: " << Quaternion::FromEulerAngles(0.f, Math::HalfPi, 0.f) << std::endl;
+
+    std::cout << "(Lerp) Same quaternion rotated back 35% of the way to identity: " << Quaternion::Lerp(quatFromMat, Quaternion::Identity, 0.35f) << std::endl;
+    std::cout << "(Lerp) Same quaternion rotated back 70% of the way to identity: " << Quaternion::Lerp(quatFromMat, Quaternion::Identity, 0.70f) << std::endl;
+    std::cout << "(Lerp) Same quaternion rotated back 90% of the way to identity: " << Quaternion::Lerp(quatFromMat, Quaternion::Identity, 0.9f) << std::endl << std::endl;
+
+    std::cout << "(Nlerp) Same quaternion rotated back 35% of the way to identity: " << Quaternion::Nlerp(quatFromMat, Quaternion::Identity, 0.35f) << std::endl;
+    std::cout << "(Nlerp) Same quaternion rotated back 70% of the way to identity: " << Quaternion::Nlerp(quatFromMat, Quaternion::Identity, 0.70f) << std::endl;
+    std::cout << "(Nlerp) Same quaternion rotated back 90% of the way to identity: " << Quaternion::Nlerp(quatFromMat, Quaternion::Identity, 0.9f) << std::endl << std::endl;
+
+    std::cout << "(Slerp) Same quaternion rotated back 35% of the way to identity: " << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.35f) << std::endl;
+    std::cout << "(Slerp) Same quaternion rotated back 70% of the way to identity: " << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.70f) << std::endl;
+    std::cout << "(Slerp) Same quaternion rotated back 90% of the way to identity: " << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.9f) << std::endl << std::endl;
     
-    std::cout << "Same quaternion rotated back 35% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.35f) << std::endl;
-    std::cout << "Same quaternion rotated back 70% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.70f) << std::endl;
-    std::cout << "Same quaternion rotated back 90% of the way to identity" << Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.9f) << std::endl;
+    // Test performance of various Quaternion lerping methods.
+    {
+        ScopeTimer("1000 Quaternion Lerps");
+        for (int i = 0; i < 1000; ++i)
+        {
+            Quaternion::Lerp(quatFromMat, Quaternion::Identity, 0.35f);
+        }
+    }
+    
+    {
+        ScopeTimer("1000 Quaternion Nlerps");
+        for (int i = 0; i < 1000; ++i)
+        {
+            Quaternion::Nlerp(quatFromMat, Quaternion::Identity, 0.35f);
+        }
+    }
+    
+    {
+        ScopeTimer("1000 Quaternion Slerps");
+        for (int i = 0; i < 1000; ++i)
+        {
+            Quaternion::Slerp(quatFromMat, Quaternion::Identity, 0.35f);
+        }
+    }
     
     std::cout << std::endl;
     
@@ -98,9 +136,11 @@ void TestMath()
     
     std::cout << "Quaternion from rotated matrix: " << quatFromMat << std::endl;
     
+    std::cout << "Matrix from the rotated Quaternion: " << Matrix3::FromQuaternion(quatFromMat) << std::endl;
+    
     // And again we'll use Quaternion.FromAngleAxis to make the same quaternion.
     // This should rotate -90 degrees around the X axis.
-    quatFromMat.FromAngleAxis(-Math::HalfPi, Vector3::Right);
+    quatFromMat.FromAxisAngle(Vector3::Right, -Math::HalfPi);
     
     std::cout << "Quaternion from FromAngleAxis: " << quatFromMat << std::endl;
     

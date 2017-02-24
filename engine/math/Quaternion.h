@@ -2,6 +2,8 @@
 #define QUATERNION_H
 
 #include <stdio.h>
+
+class Matrix3;
 class Vector3;
 
 class Quaternion
@@ -15,16 +17,17 @@ public:
     const Quaternion& Unitize();
     Quaternion GetUnitized() const;
     
-    void FromAngleAxis(float angle, const Vector3& axis);
-    void ToAngleAxis(float& angle, Vector3& axis);
+    void FromAxisAngle(const Vector3& axis, float angle);
+    void ToAxisAngle(Vector3& axis, float& angle);
     
     static Quaternion FromEulerAngles(float x, float y, float z);
     
     void FromRotationMatrix(const Matrix3& rot);
     
-    float Dot(const Quaternion& q) const;
+    inline float Dot(const Quaternion& q) const;
     static Quaternion Lerp(const Quaternion& q1, const Quaternion& q2, float t);
     static Quaternion Slerp(const Quaternion& q1, const Quaternion& q2, float t);
+    static Quaternion Nlerp(const Quaternion& q1, const Quaternion& q2, float t);
     
     Quaternion operator+(const Quaternion& q) const;
     Quaternion operator-(const Quaternion& q) const;

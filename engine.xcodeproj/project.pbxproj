@@ -38,6 +38,7 @@
 		E17ADD7C1E4D920800FB9D58 /* Matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix3.cpp; sourceTree = "<group>"; };
 		E17ADD7D1E4D920800FB9D58 /* Matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix3.h; sourceTree = "<group>"; };
 		E17ADD7F1E52D79A00FB9D58 /* Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		E17ADD811E60072800FB9D58 /* PerfTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PerfTimer.h; path = ../../engine/PerfTimer.h; sourceTree = "<group>"; };
 		E1F7E8D61E4C3BB80001DD5F /* engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = engine; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F7E8D91E4C3BB80001DD5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E1F7E8E21E4C3C2C0001DD5F /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
@@ -75,9 +76,18 @@
 			path = engine/math;
 			sourceTree = "<group>";
 		};
+		E17ADD801E60070C00FB9D58 /* time */ = {
+			isa = PBXGroup;
+			children = (
+				E17ADD811E60072800FB9D58 /* PerfTimer.h */,
+			);
+			name = time;
+			sourceTree = "<group>";
+		};
 		E1F7E8CD1E4C3BB80001DD5F = {
 			isa = PBXGroup;
 			children = (
+				E17ADD801E60070C00FB9D58 /* time */,
 				E1F7E8D81E4C3BB80001DD5F /* engine */,
 				E1F7E8E11E4C3C2C0001DD5F /* core */,
 				E17ADD721E4C4C5D00FB9D58 /* math */,
@@ -265,6 +275,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
@@ -275,6 +286,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};

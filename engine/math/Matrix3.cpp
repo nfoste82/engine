@@ -1,7 +1,11 @@
 #include "Vector3.h"
+#include "Quaternion.h"
 #include "Matrix3.h"
 
 #include <sstream>
+
+
+// NOTE: Matrices in this game engine are row-major.
 
 const Matrix3 Matrix3::Identity(Vector3::Right, Vector3::Up, Vector3::Forward);
 
@@ -49,6 +53,45 @@ Matrix3 Matrix3::FromEulerAngles(float x, float y, float z)
     mat.SetValue(1, 2, (cxsy * sz) - (sx * cz));
     mat.SetValue(2, 2, cx * cy);
     return mat;
+}
+
+Matrix3 Matrix3::FromQuaternion(const Quaternion& q)
+{
+    // Code in this method was reference and adapted
+    // from code written by Eric Brown, located here:
+    // http://physicsforgames.blogspot.co.uk/2010/02/quaternions.html
+    
+    Matrix3 result;
+
+    float wSq = q.w * q.w;
+    float xSq = q.x * q.x;
+    float ySq = q.y * q.y;
+    float zSq = q.z * q.z;
+    
+    float twoW = 2.0f * q.w;
+    float twoX = 2.0f * q.x;
+    float twoY = 2.0f * q.y;
+    
+    float xy = twoX * q.y;
+    float xz = twoX * q.z;
+    float yz = twoY * q.z;
+    float wx = twoW * q.x;
+    float wy = twoW * q.y;
+    float wz = twoW * q.z;
+    
+    
+    result.SetValue(0, 0, wSq + xSq - ySq - zSq);
+    result.SetValue(1, 0, xy - wz);
+    result.SetValue(2, 0, xz + wy);
+    
+    result.SetValue(0, 1, xy + wz);
+    result.SetValue(1, 1, wSq - xSq + ySq - zSq);
+    result.SetValue(2, 1, yz - wx);
+    
+    result.SetValue(0, 2, xz - wy);
+    result.SetValue(1, 2, yz + wx);
+    result.SetValue(2, 2, wSq - xSq - ySq + zSq);
+    return result;
 }
 
 Vector3 Matrix3::GetRow(int rowIndex) const

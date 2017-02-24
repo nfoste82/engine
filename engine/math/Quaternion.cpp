@@ -27,7 +27,7 @@ Quaternion::Quaternion(float _w, float _x, float _y, float _z) :
 
 Quaternion::Quaternion(float radians, const Vector3& axis)
 {
-    FromAngleAxis(radians, axis);
+    FromAxisAngle(axis, radians);
 }
 
 const Quaternion& Quaternion::Unitize()
@@ -55,7 +55,7 @@ Quaternion Quaternion::GetUnitized() const
                       y * inverseLength, z * inverseLength);
 }
 
-void Quaternion::FromAngleAxis(float radians, const Vector3& axis)
+void Quaternion::FromAxisAngle(const Vector3& axis, float radians)
 {
     float sn;
     Trig::SinCos(radians * 0.5f, sn, w);
@@ -66,7 +66,7 @@ void Quaternion::FromAngleAxis(float radians, const Vector3& axis)
 
 // Note that this is non-const because if your quaternion is
 // not-unit length then it must be unitized to prevent errors.
-void Quaternion::ToAngleAxis(float& radians, Vector3& axis)
+void Quaternion::ToAxisAngle(Vector3& axis, float& radians)
 {
     if (w > 1)
     {
@@ -190,9 +190,14 @@ float Quaternion::Dot(const Quaternion& q) const
 
 Quaternion Quaternion::Lerp(const Quaternion& q1, const Quaternion& q2, float t)
 {
-    return (q1 * (1 - t) + q2 * t).Unitize();
+    return (q1 * (1.0f - t) + q2 * t).Unitize();
 }
 
+// More accurate than Nlerp, but also more expensive.
+// In my tests this is about 2-3x more expensive, but that will vary
+// based on your hardware. Also, even though it's 2-3x more expensive,
+// on my 3 year old MacBook Pro it still did 10000 calls in 1.7ms on a DEBUG build,
+// and 0.473ms in RELEASE.
 Quaternion Quaternion::Slerp(const Quaternion& q1, const Quaternion& q2, float t)
 {
     Quaternion q3 = Quaternion::Identity;
@@ -207,7 +212,7 @@ Quaternion Quaternion::Slerp(const Quaternion& q1, const Quaternion& q2, float t
     // Dot is cos(theta), when dot is less than 0 then the rotations are
     // more than 90 degrees apart from one another. We need to invert
     // one of the quaternions so we don't end up rotating more than 180 degrees.
-    if (dot < 0.f)
+    if (dot < 0.0f)
     {
         float angle = acosf(-dot);
         return (q1 * sinf(angle * (1 - t)) + -q2 * sinf(angle * t)) / sinf(angle);
@@ -217,6 +222,31 @@ Quaternion Quaternion::Slerp(const Quaternion& q1, const Quaternion& q2, float t
         float angle = acosf(dot);
         return (q1 * sinf(angle * (1 - t)) + q2 * sinf(angle * t)) / sinf(angle);
     }
+}
+
+// Works similar to Lerp, but always chooses the shortest rotation path.
+Quaternion Quaternion::Nlerp(const Quaternion& q1, const Quaternion& q2, float t)
+{
+    Quaternion result;
+    float dot = q1.Dot(q2);
+    float inverseT = 1.0f - t;
+    
+    if (dot < 0.0f)
+    {
+        t = -t;
+    }
+    
+    // Lerp between q1 and q2. We can't just
+    // call Lerp(), because inverseT is calculated
+    // prior to the dot product check, and t
+    // may have been changed.
+    
+    result.w = q1.w * inverseT + q2.w * t;
+    result.x = q1.x * inverseT + q2.x * t;
+    result.y = q1.y * inverseT + q2.y * t;
+    result.z = q1.z * inverseT + q2.z * t;
+    
+    return result.Unitize();
 }
 
 Quaternion Quaternion::operator+(const Quaternion& q) const
