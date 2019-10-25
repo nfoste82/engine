@@ -1,5 +1,4 @@
-#ifndef VECTOR_3
-#define VECTOR_3
+#pragma once
 
 #include <math.h>
 #include <ostream>
@@ -67,5 +66,3 @@ public:
     float y;
     float z;
 };
-
-#endif //VECTOR_3

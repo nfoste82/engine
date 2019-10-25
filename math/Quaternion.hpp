@@ -1,7 +1,7 @@
-#ifndef QUATERNION_H
-#define QUATERNION_H
+#pragma once
 
 #include <stdio.h>
+#include <ostream>
 
 class Matrix3;
 class Vector3;
@@ -51,5 +51,3 @@ public:
     static const float Epsilon;
     static const Quaternion Identity;
 };
-
-#endif // QUATERNION_H

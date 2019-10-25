@@ -1,11 +1,16 @@
 #include <iostream>
-#include "Math.h"
-#include "Matrix3.h"
-#include "Quaternion.h"
-#include "Vector3.h"
-#include "SceneManager.h"
-#include "Object.h"
-#include "PerfTimer.h"
+#include "Math.hpp"
+#include "Matrix3.hpp"
+#include "Quaternion.hpp"
+#include "Vector3.hpp"
+#include "SceneManager.hpp"
+#include "Object.hpp"
+#include "PerfTimer.hpp"
+
+#include "components/TransformComponent.hpp"
+#include "messages/AddComponentMessage.hpp"
+
+using namespace Core;
 
 void TestSceneManager()
 {
@@ -28,6 +33,20 @@ void TestSceneManager()
     {
         std::cerr << msg << std::endl;
     }
+    
+    TransformComponent* transform = new TransformComponent(Vector3::Zero, Quaternion::Identity);
+    
+    AddComponentMessage addCompMsg(firstObj.GetID(), transform);
+    bool handled = sceneMgr.SendMessage(&addCompMsg);
+    
+    // If the AddComponent message wasn't handled then the pointer never transferred
+    // to the object and we need to take care of ourselves.
+    if (!handled)
+    {
+        delete transform;
+    }
+    
+    std::cout << firstObj.HasComponent(ComponentType::Transform) << std::endl;
 }
 
 void TestMath()

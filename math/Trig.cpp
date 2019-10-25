@@ -1,5 +1,5 @@
 #include <math.h>
-#include "Trig.h"
+#include "Trig.hpp"
 
 void Trig::SinCos(float x, float& sn, float& cs)
 {

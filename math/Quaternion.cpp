@@ -15,10 +15,10 @@
 
 #include <math.h>
 #include <sstream>
-#include "Matrix3.h"
-#include "Trig.h"
-#include "Vector3.h"
-#include "Quaternion.h"
+#include "Matrix3.hpp"
+#include "Trig.hpp"
+#include "Vector3.hpp"
+#include "Quaternion.hpp"
 
 Quaternion::Quaternion(float _w, float _x, float _y, float _z) :
     w(_w), x(_x), y(_y), z(_z)

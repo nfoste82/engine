@@ -1,5 +1,4 @@
-#ifndef MATRIX3_H
-#define MATRIX3_H
+#pragma once
 
 #include <ostream>
 
@@ -43,5 +42,3 @@ public:
 private:
     float m_values[3][3];
 };
-
-#endif // MATRIX3_H
