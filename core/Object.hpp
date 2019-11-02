@@ -14,7 +14,6 @@ class BaseMessage;
 class Object
 {
 public:
-
     Object(int uniqueID) : id(uniqueID)
     {
     }

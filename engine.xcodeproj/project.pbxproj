@@ -16,6 +16,7 @@
 		E1B2487123634E6200F1E1FB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1B2487023634E6200F1E1FB /* main.cpp */; };
 		E1B248752363519B00F1E1FB /* TransformComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1B248742363519B00F1E1FB /* TransformComponent.cpp */; };
 		E1B248782363930E00F1E1FB /* BaseMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1B248762363930E00F1E1FB /* BaseMessage.cpp */; };
+		E1B2487F2363D18600F1E1FB /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1B2487E2363D18600F1E1FB /* Component.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +53,10 @@
 		E1B248762363930E00F1E1FB /* BaseMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BaseMessage.cpp; path = core/BaseMessage.cpp; sourceTree = SOURCE_ROOT; };
 		E1B248772363930E00F1E1FB /* BaseMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = BaseMessage.hpp; path = core/BaseMessage.hpp; sourceTree = SOURCE_ROOT; };
 		E1B2487B23639A3C00F1E1FB /* AddComponentMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AddComponentMessage.hpp; sourceTree = "<group>"; };
+		E1B2487D2363CB9400F1E1FB /* SetPositionMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SetPositionMessage.hpp; sourceTree = "<group>"; };
+		E1B2487E2363D18600F1E1FB /* Component.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = core/Component.cpp; sourceTree = SOURCE_ROOT; };
+		E1DDEC94236C869800F0B770 /* SetRotationMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SetRotationMessage.hpp; sourceTree = "<group>"; };
+		E1DDEC95236CAB0A00F0B770 /* GetPositionMessage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GetPositionMessage.hpp; sourceTree = "<group>"; };
 		E1F7E8D61E4C3BB80001DD5F /* engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = engine; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,6 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				E1B2487B23639A3C00F1E1FB /* AddComponentMessage.hpp */,
+				E1B2487D2363CB9400F1E1FB /* SetPositionMessage.hpp */,
+				E1DDEC94236C869800F0B770 /* SetRotationMessage.hpp */,
+				E1DDEC95236CAB0A00F0B770 /* GetPositionMessage.hpp */,
 			);
 			path = messages;
 			sourceTree = "<group>";
@@ -132,6 +140,7 @@
 		E1F7E8E11E4C3C2C0001DD5F /* core */ = {
 			isa = PBXGroup;
 			children = (
+				E1B2487E2363D18600F1E1FB /* Component.cpp */,
 				E1B2486B23634E1100F1E1FB /* Component.hpp */,
 				E1B2486923634E1100F1E1FB /* Object.cpp */,
 				E1B2486A23634E1100F1E1FB /* Object.hpp */,
@@ -209,6 +218,7 @@
 				E1B2486E23634E1100F1E1FB /* SceneManager.cpp in Sources */,
 				E1B248752363519B00F1E1FB /* TransformComponent.cpp in Sources */,
 				E1B2486523634DFE00F1E1FB /* Matrix3.cpp in Sources */,
+				E1B2487F2363D18600F1E1FB /* Component.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

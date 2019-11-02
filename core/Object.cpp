@@ -15,7 +15,9 @@ namespace Core
             throw "Component of type already exists.";
         }
         
-        componentLookup[componentType] = std::shared_ptr<Component>(component);
+        auto componentPtr = std::shared_ptr<Component>(component);
+        componentLookup[componentType] = componentPtr;
+        components.push_back(componentPtr);
     }
     
     bool Object::SendMessage(BaseMessage* msg)
@@ -25,6 +27,14 @@ namespace Core
             case MessageType::AddComponent:
                 MsgHandlerAddComponent(static_cast<AddComponentMessage*>(msg));
                 return true;
+            default:
+                // Check if components handle the message
+                // TODO: This could be optimized by keeping a mapping of which components care about which messages
+                for (auto c : components)
+                {
+                    c->SendMessage(msg);
+                }
+                break;
         }
         
         return false;

@@ -9,6 +9,8 @@
 
 #include "components/TransformComponent.hpp"
 #include "messages/AddComponentMessage.hpp"
+#include "messages/SetPositionMessage.hpp"
+#include "messages/GetPositionMessage.hpp"
 
 using namespace Core;
 
@@ -47,6 +49,14 @@ void TestSceneManager()
     }
     
     std::cout << firstObj.HasComponent(ComponentType::Transform) << std::endl;
+    
+    SetPositionMessage setPosMsg(firstObj.GetID(), Vector3(1.0f, 2.0f, 3.0f));
+    sceneMgr.SendMessage(&setPosMsg);
+    
+    GetPositionMessage getPosMsg(firstObj.GetID());
+    sceneMgr.SendMessage(&getPosMsg);
+    
+    std::cout << "Position: " << getPosMsg.position << std::endl;
 }
 
 void TestMath()
